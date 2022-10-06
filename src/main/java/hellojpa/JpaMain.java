@@ -26,17 +26,18 @@ public class JpaMain {
             member.setTeam(team);
             em.persist(member);
 
+            em.flush();
+            em.clear();
+
             //영속성 컨텍스트로 1차 캐시에 들어가 있기에 호출 안됨
             //만약 쿼리를 보고싶으면 em.flush(), em.clear() 실행
             Member findMember = em.find(Member.class, member.getId());
 
             Team findTeam = findMember.getTeam();
-            System.out.println("findTeam.getName() = " + findTeam.getName());
-
-            //100번팀이 있다고 가정하고 멤버의 팀을 수정하고 싶을 경우
-            //따로 persist 안 하고 set으로 변경만 하면 됨
-            Team newTeam = em.find(Team.class, 100L);
-            findMember.setTeam(newTeam);
+            List<Member> members = findMember.getTeam().getMembers();
+            for (Member m : members) {
+                System.out.println("m.getUsername() = " + m.getUsername());
+            }
 
             tx.commit();
         }catch (Exception e){
