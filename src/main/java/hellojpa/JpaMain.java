@@ -23,21 +23,21 @@ public class JpaMain {
 
             Member member = new Member();
             member.setUsername("member1");
-            member.setTeam(team);
+//            member.changeTeam(team);
             em.persist(member);
+
+            team.addMember(member);
 
             em.flush();
             em.clear();
 
-            //영속성 컨텍스트로 1차 캐시에 들어가 있기에 호출 안됨
-            //만약 쿼리를 보고싶으면 em.flush(), em.clear() 실행
-            Member findMember = em.find(Member.class, member.getId());
+            Team findTeam = em.find(Team.class, team.getId()); //1차 캐시
+            List<Member> members = findTeam.getMembers();
 
-            Team findTeam = findMember.getTeam();
-            List<Member> members = findMember.getTeam().getMembers();
-            for (Member m : members) {
-                System.out.println("m.getUsername() = " + m.getUsername());
-            }
+            System.out.println("========================");
+            System.out.println("findTeam = " + findTeam);
+
+            System.out.println("========================");
 
             tx.commit();
         }catch (Exception e){
