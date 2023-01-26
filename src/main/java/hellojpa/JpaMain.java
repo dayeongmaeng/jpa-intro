@@ -1,5 +1,7 @@
 package hellojpa;
 
+import org.hibernate.Hibernate;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -10,6 +12,7 @@ import java.util.List;
 public class JpaMain {
 
     public static void main(String[] args) {
+
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
 
         EntityManager em = emf.createEntityManager();
@@ -19,18 +22,24 @@ public class JpaMain {
 
         try {
 
-            Member member = new Member();
-            member.setCreatedBy("kim");
-            member.setCreatedDate(LocalDateTime.now());
+            Member member1 = new Member();
+            member1.setUsername("member1");
+            em.persist(member1);
 
-            em.persist(member);
+            Member member2 = new Member();
+            member1.setUsername("member2");
+            em.persist(member2);
 
             em.flush();
             em.clear();
 
-            tx.commit();
+            Member refMember = em.getReference(Member.class, member1.getId());
+            System.out.println("refMember.getClass() = " + refMember.getClass());
+            Hibernate.initialize(refMember);//강제 초기화
 
+            tx.commit();
         }catch (Exception e){
+            e.printStackTrace();
             tx.rollback();
         }finally {
             em.close();
@@ -38,4 +47,5 @@ public class JpaMain {
 
         emf.close();
     }
+
 }
