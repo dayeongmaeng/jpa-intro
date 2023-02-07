@@ -22,12 +22,17 @@ public class JpaMain {
 
         try {
 
+            Addreess addreess = new Addreess("city", "street", "1");
             Member member = new Member();
-            member.setUsername("다영");
-            member.setHomeAddreess(new Addreess("city", "street", "1"));
-            member.setWorkPeriod(new Period());
+            member.setUsername("member1");
+            member.setHomeAddreess(addreess);
             em.persist(member);
+
+            Addreess newAddreess = new Addreess("newCity", addreess.getStreet(), addreess.getZipcode());
+            member.setHomeAddreess(newAddreess);
+
             tx.commit();
+
         }catch (Exception e){
             tx.rollback();
             e.printStackTrace();
