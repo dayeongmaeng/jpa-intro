@@ -4,16 +4,16 @@ import javax.persistence.Embeddable;
 import java.util.Objects;
 
 @Embeddable
-public class Addreess {
+public class Address {
 
     private String city;
     private String street;
     private String zipcode;
 
-    public Addreess() {
+    public Address() {
     }
 
-    public Addreess(String city, String street, String zipcode) {
+    public Address(String city, String street, String zipcode) {
         this.city = city;
         this.street = street;
         this.zipcode = zipcode;
@@ -47,8 +47,8 @@ public class Addreess {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Addreess addreess = (Addreess) o;
-        return Objects.equals(city, addreess.city) && Objects.equals(street, addreess.street) && Objects.equals(zipcode, addreess.zipcode);
+        Address address = (Address) o;
+        return Objects.equals(city, address.city) && Objects.equals(street, address.street) && Objects.equals(zipcode, address.zipcode);
     }
 
     @Override
