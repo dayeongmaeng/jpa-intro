@@ -8,3 +8,4 @@
 6. 다양한 연관관계 매핑 https://fine-megaraptor-e63.notion.site/JPA-a18f80819c36491fb2de6fed038d4a1a
 7. 고급 매핑 https://fine-megaraptor-e63.notion.site/JPA-f306794038c542f4947fc5552f263de0
 8. 프록시와 연관관계 관리 https://fine-megaraptor-e63.notion.site/JPA-dad9f046017241b385e8fb5a53cd555c
+9. 값 타입 https://fine-megaraptor-e63.notion.site/JPA-170167512dd94e2f80b1a989bc476d6e
