@@ -1,7 +1,7 @@
 package hellojpa;
 
-import javax.persistence.Embeddable;
 import java.time.LocalDateTime;
+import javax.persistence.Embeddable;
 
 @Embeddable
 public class Period {

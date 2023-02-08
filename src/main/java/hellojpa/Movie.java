@@ -13,7 +13,7 @@ public class Movie extends Item {
     public String getDirecrot() {
         return direcrot;
     }
-
+ 
     public void setDirecrot(String direcrot) {
         this.direcrot = direcrot;
     }

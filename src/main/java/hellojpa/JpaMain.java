@@ -39,7 +39,7 @@ public class JpaMain {
             em.clear();
 
             System.out.println("============= START =============");
-            Member findMember = em.find(Member.class, member.getId( ));
+            Member findMember = em.find(Member.class, member.getId());
 
 //            Addreess a = findMember.getHomeAddreess();
 //            findMember.setHomeAddreess(new Addreess("newCity", a.getStreet(), a.getZipcode()));
@@ -54,10 +54,10 @@ public class JpaMain {
 
             tx.commit();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             tx.rollback();
             e.printStackTrace();
-        }finally {
+        } finally {
             em.close();
         }
 
